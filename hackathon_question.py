@@ -28,6 +28,7 @@
 # Also read the documention provided in each function to understand it's functionality.
 
 ## Importing python libraries, necessary for solving this exercise.
+import requests
 from requests import get
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -46,6 +47,11 @@ def parse_html_page(htmlpage):
     '''
 
     # write the functionality of 'parse_html_page' below.
+    html = requests.get(htmlpage)
+
+    #Convert the parsed page into beautifulsoup object
+    html_soup = BeautifulSoup(html.content, 'html.parser')
+    return html_soup
 
 def get_all_tr_elements(soup_obj):
     '''
@@ -167,31 +173,31 @@ def main():
 
     html_soup = parse_html_page(input_html)
 
-    crypto_containers = get_all_tr_elements(html_soup)
+    # crypto_containers = get_all_tr_elements(html_soup)
 
-    crypto_df = convert_tr_elements_to_cryptodf(crypto_containers)
+    # crypto_df = convert_tr_elements_to_cryptodf(crypto_containers)
 
-    crypto_df = transform_cryptodf(crypto_df)
+    # crypto_df = transform_cryptodf(crypto_df)
 
-    plot1 = draw_barplot_top10_cryptocurrencies_with_highest_market_value(crypto_df)
+    # plot1 = draw_barplot_top10_cryptocurrencies_with_highest_market_value(crypto_df)
 
-    plot2 = draw_scatterplot_trend_of_price_with_market_value(crypto_df)
+    # plot2 = draw_scatterplot_trend_of_price_with_market_value(crypto_df)
 
-    plot3 = draw_scatterplot_trend_of_price_with_volume(crypto_df)
+    # plot3 = draw_scatterplot_trend_of_price_with_volume(crypto_df)
 
-    plot4 = draw_barplot_top10_cryptocurrencies_with_highest_positive_change(crypto_df)
+    # plot4 = draw_barplot_top10_cryptocurrencies_with_highest_positive_change(crypto_df)
 
-    serialize_plot(plot1, "plot1.pk")
+    # serialize_plot(plot1, "plot1.pk")
 
-    serialize_plot(plot2.axes, "plot2_axes.pk")
+    # serialize_plot(plot2.axes, "plot2_axes.pk")
 
-    serialize_plot(plot2.data, "plot2_data.pk")
+    # serialize_plot(plot2.data, "plot2_data.pk")
 
-    serialize_plot(plot3.axes, "plot3_axes.pk")
+    # serialize_plot(plot3.axes, "plot3_axes.pk")
 
-    serialize_plot(plot3.data, "plot3_data.pk")
+    # serialize_plot(plot3.data, "plot3_data.pk")
 
-    serialize_plot(plot4, "plot4.pk")
+    # serialize_plot(plot4, "plot4.pk")
 
 
 if __name__ == '__main__':
